@@ -1,62 +1,146 @@
-import React from 'react';
-import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image } from 'react-native';
+import React,{ useState } from 'react';
+import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image,TouchableOpacity } from 'react-native';
 import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
+import {Picker} from '@react-native-community/picker';
 
 const Registration = ({ navigation }) => {
+    const [selectedValue, setSelectedValue] = useState("java");
     return (
         <View style={styles.container}>
             <StatusBar
                 backgroundColor="transparent"
                 translucent={true}
             />
-            <View style={styles.backImage}>
-                <ImageBackground source={require('../assets/images/registration.png')} style={styles.image}>
-                    <View style={styles.logo}>
-                        <Image source={require("../assets/images/logo.png")} />
+          
+            <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
+            <View style={styles.background}></View>
+              <View style={styles.formstart}>
+              <View >
+            <View style={styles.formInner}>
+            <View style={styles.imgbox}>
+                        <Image style={styles.boximg} source={require("../assets/images/usericon.png")} />
 
                     </View>
-                </ImageBackground>
-            </View>
-            <ImageBackground source={require('../assets/images/backimagelogin.png')} style={styles.image}>
-                <View style={styles.main}>
-                    <View style={styles.loginCon} >
-                        <Text style={styles.loginLabel}>Register Yourself</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Full name"
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Phone"
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="E-mail"
-                        />
-                        <View style={styles.password_con}>
-                            <Image style={styles.notshow} source={require("../assets/images/notshow.png")} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Password"
-                                secureTextEntry={true}
-                            />
-                        </View>
-                        <View style={styles.password_con}>
-                            <Image style={styles.notshow} source={require("../assets/images/notshow.png")} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Confirm password"
-                                secureTextEntry={true}
-                            />
-                        </View>
-                        <BottonCommon label="Register" />
+                    <View>
+                        <Text style={styles.boxtitle}>Register </Text>
                     </View>
-                    <View style={styles.footer_two}><Text style={styles.donthavaccount}>Already have an account?</Text><Text onPress={() => navigation.navigate('Login')} style={styles.register}> Log in</Text></View>
+              </View>
 
+            <View style={{position:'relative'}}>
+                    <View >
+                       <View style={styles.inputIcon}>
+                       {/* <Icon name="user" size={30} color="#900" />
+                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       <Image source={require("../assets/images/uicon.png")} />
+
+                           </View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Full Name"
+                            placeholderTextColor="#ffffff" 
+                        />
+                        </View>
+                        <View >
+                       <View style={styles.inputIcon}>
+                       {/* <Icon name="user" size={30} color="#900" />
+                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       <Image source={require("../assets/images/emailicon.png")} />
+
+                           </View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Email"
+                            placeholderTextColor="#ffffff" 
+                        />
+                        </View>
+                        
+                        <View >
+                       <View style={styles.inputIcon}>
+                       {/* <Icon name="user" size={30} color="#900" />
+                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       <Image source={require("../assets/images/lockicon.png")} />
+
+                           </View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password"
+                            placeholderTextColor="#ffffff" 
+                        />
+                        
+                        </View>
+
+                        <View style={{justifyContent:'space-between',flexDirection:'row',}}>
+                            <View style={{flex:2,paddingRight:10}}>
+                       <View style={styles.inputIcon}>
+                       {/* <Icon name="user" size={30} color="#900" />
+                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       <Image source={require("../assets/images/phoneicon.png")} />
+
+                           </View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Phone Number"
+                            placeholderTextColor="#ffffff" 
+                        />
                 </View>
+                <View style={{flex:1.5}}>
+                       
+                        {/* <TextInput
+                            style={{ height: 58,
+                                marginBottom: SIZES.padding2,
+                                borderWidth: 1,
+                                borderColor:'#5bc3c8',
+                                paddingHorizontal: SIZES.padding,
+                                fontSize: 15,
+                                borderRadius:5,
+                                backgroundColor:'#5bc3c8',
+                                color:'#ffffff',
+                                paddingLeft:10}}
+                            placeholder="Country"
+                            placeholderTextColor="#ffffff" 
+                        /> */}
+                         <View  style={styles.input2}>
+              <Picker 
+        selectedValue={selectedValue}
+        style={{ height: 58, width: '100%',color:'#ffffff',}}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
+      </View>
+                        </View>
+                        </View>
+                       
+                                <View>
+                                    <Text style={{fontSize:15,color:'#ffffff',paddingTop:5}}>Agree to Terms & Conditions</Text>
+                                </View>
+
+            </View>
+            </View>
+
+              </View>
+              <View style={styles.loginbtn}>
+              <TouchableOpacity style={styles.logintouch}>
+           
+            <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
+        </TouchableOpacity>    
+                        </View>
+                        <View style={styles.loginbelow}>
+                            <View style={styles.forgotbtn}>
+                            <TouchableOpacity style={styles.forgottouch} onPress={() => navigation.navigate('Login')}>
+           
+            
+            <Text style={styles.forgottext}>
+                 Already have an account? Login</Text>
+        </TouchableOpacity>
+                            </View>
+                            
+                            
+                        </View>
             </ImageBackground>
         </View>
     );
@@ -67,11 +151,10 @@ export default Registration;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        
     },
-    backImage: {
-        flex: .4,
-    },
+   
     main: {
         flex: 1
     },
@@ -79,18 +162,40 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: "cover",
         justifyContent: "center",
+
         width: '100%',
-        height: '100%'
+        height: '100%',
+       
+        
     },
     input: {
-        height: 40,
+        height: 58,
         marginBottom: SIZES.padding2,
         borderWidth: 1,
-        borderColor: COLORS.cilver,
+        borderColor:'#5bc3c8',
         paddingHorizontal: SIZES.padding,
-        fontSize: SIZES.h5
+        fontSize: 15,
+        borderRadius:5,
+        backgroundColor:'#5bc3c8',
+        color:'#ffffff',
+        paddingLeft:40
+        
+    },
+    input2: {
+        height: 58,
+        marginBottom: SIZES.padding2,
+        borderWidth: 1,
+        borderColor:'#5bc3c8',
+        paddingHorizontal: SIZES.padding,
+        fontSize: 15,
+        borderRadius:5,
+        backgroundColor:'#5bc3c8',
+        color:'#ffffff',
+        paddingLeft:10
+        
     },
     loginCon: {
+        //   borderWidth: 1,
         padding: SIZES.body4,
         marginHorizontal: SIZES.padding,
         borderRadius: SIZES.radius,
@@ -100,10 +205,10 @@ const styles = StyleSheet.create({
             width: 0,
             height: 1,
         },
-        shadowOpacity: 0.10,
+        shadowOpacity: 0.18,
         shadowRadius: 1.00,
         elevation: 4,
-        // opacity:.90
+        // opacity: .90
     },
     loginLabel: {
         fontSize: SIZES.h2,
@@ -111,39 +216,20 @@ const styles = StyleSheet.create({
         color: COLORS.cyan,
         fontWeight: 'bold'
     },
-    donthavaccount: {
-        fontSize: SIZES.h5,
-        color: COLORS.gray
-    },
-    register: {
-        fontSize: SIZES.h5,
-        color: COLORS.cyan,
-        fontWeight: "bold"
-    },
-
-    footer_two: {
-        flexDirection: "row",
-        paddingBottom: SIZES.h5,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end"
-    },
-
-    logo: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        paddingBottom: SIZES.padding
-    },
-    notshow: {
-        marginTop: SIZES.margin2,
-        position: "absolute",
-        right: 10,
-    },
-    password_con: {
-        // flex: 1
-    },
-   
-
+    background:{position:'absolute',bottom:80,left:0,width:'100%',height:455,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
+    formstart:{flex:6,paddingHorizontal:20,position:'relative',zIndex:2},
+    formInner:{alignItems:'center',paddingTop:100,marginBottom:25},
+    imgbox:{width:94,height:94,marginBottom:10},
+    boximg:{width:'100%',height:'100%',resizeMode:'cover'},
+    boxtitle:{color:'#fff',textTransform:'uppercase',fontSize:18},
+    inputIcon:{position:'absolute',top:18,left:12,zIndex:1},
+    loginbtn:{flex:.6,alignItems:'center',position:'relative',zIndex:2},
+    logintouch:{backgroundColor:'#fff',width:'100%',padding:18,borderBottomLeftRadius:60,},
+    loginbelow:{flex:.5,paddingHorizontal:20,position:'relative',zIndex:2},
+    forgotbtn:{},
+    forgottouch:{width:'100%',marginBottom:10},
+    forgottext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
+    regtext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
+  
+  
 })

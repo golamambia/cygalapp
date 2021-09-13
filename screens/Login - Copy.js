@@ -15,22 +15,20 @@ const Login = ({ navigation }) => {
             />
           
             <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
-            <View style={styles.background}></View>
-              <View style={styles.formstart}>
-              <View >
-            <View style={styles.formInner}>
-            <View style={styles.imgbox}>
-                        <Image style={styles.boximg} source={require("../assets/images/usericon.png")} />
+              <View style={{flex:3,paddingHorizontal:20}}>
+            <View style={{alignItems:'center',paddingTop:120,marginBottom:25}}>
+            <View style={{width:94,height:94,marginBottom:10}}>
+                        <Image style={{width:'100%',height:'100%',resizeMode:'cover'}} source={require("../assets/images/usericon.png")} />
 
                     </View>
                     <View>
-                        <Text style={styles.boxtitle}>login </Text>
+                        <Text style={{color:'#fff',textTransform:'uppercase',fontSize:18}}>login </Text>
                     </View>
               </View>
 
-            <View >
+            <View>
                     <View style={{position:'relative'}}>
-                       <View style={styles.inputIcon}>
+                       <View style={{position:'absolute',top:18,left:12,zIndex:1}}>
                        {/* <Icon name="user" size={30} color="#900" />
                        <Icon name="Star" size={30} color={COLORS.cyan}/> */}
                        <Image source={require("../assets/images/uicon.png")} />
@@ -43,7 +41,7 @@ const Login = ({ navigation }) => {
                         />
                         </View>
                         <View style={{position:'relative'}}>
-                       <View style={styles.inputIcon}>
+                       <View style={{position:'absolute',top:18,left:12,zIndex:1}}>
                        {/* <Icon name="user" size={30} color="#900" />
                        <Icon name="Star" size={30} color={COLORS.cyan}/> */}
                        <Image source={require("../assets/images/lockicon.png")} />
@@ -57,38 +55,35 @@ const Login = ({ navigation }) => {
                         
                         </View>
 
-                        <View>
-                                    <Text style={{fontSize:15,color:'#ffffff',}}>Remember this Account</Text>
-                                </View>
-
+                        
                         
 
 
             </View>
-            </View>
+
 
               </View>
-              <View style={styles.loginbtn}>
-              <TouchableOpacity style={styles.logintouch}  onPress={() => navigation.navigate('Profile')}>
+              <View style={{flex:.6,alignItems:'center',}}>
+              <TouchableOpacity style={{backgroundColor:'#fff',width:'100%',padding:18,borderBottomLeftRadius:60,}}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    
                         </View>
-                        <View style={styles.loginbelow}>
-                            <View style={styles.forgotbtn}>
-                            <TouchableOpacity style={styles.forgottouch} onPress={() => navigation.navigate('Forgotpassword')}>
+                        <View style={{flex:1,paddingHorizontal:20}}>
+                            <View style={{borderBottomWidth:1,borderBottomColor:'#52c7cb'}}>
+                            <TouchableOpacity style={{width:'100%',marginBottom:10}}>
            
             
-            <Text style={styles.forgottext}>
+            <Text style={{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'}}>
                 <Image  source={require("../assets/images/forgotkey.png")} />   Forgot password?</Text>
         </TouchableOpacity>
                             </View>
                             
                             <View style={{paddingTop:5}}>
-                            <TouchableOpacity style={{width:'100%',}} onPress={() => navigation.navigate('Registration')}>
+                            <TouchableOpacity style={{width:'100%',}}>
            
             
-            <Text style={styles.regtext}>
+            <Text style={{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'}}>
                 <Image  source={require("../assets/images/logregicon.png")} />   Register</Text>
         </TouchableOpacity>
                             </View>
@@ -103,8 +98,7 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        
+        flexDirection: 'column'
     },
    
     main: {
@@ -116,9 +110,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
 
         width: '100%',
-        height: '100%',
-       
-        
+        height: '100%'
     },
     input: {
         height: 58,
@@ -155,20 +147,6 @@ const styles = StyleSheet.create({
         color: COLORS.cyan,
         fontWeight: 'bold'
     },
-    background:{position:'absolute',bottom:185,left:0,width:'100%',height:335,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
-    formstart:{flex:3,paddingHorizontal:20,position:'relative',zIndex:2},
-    formInner:{alignItems:'center',paddingTop:120,marginBottom:25},
-    imgbox:{width:94,height:94,marginBottom:10},
-    boximg:{width:'100%',height:'100%',resizeMode:'cover'},
-    boxtitle:{color:'#fff',textTransform:'uppercase',fontSize:18},
-    inputIcon:{position:'absolute',top:18,left:12,zIndex:1},
-    loginbtn:{flex:.6,alignItems:'center',position:'relative',zIndex:2},
-    logintouch:{backgroundColor:'#fff',width:'100%',padding:18,borderBottomLeftRadius:60,},
-    loginbelow:{flex:1,paddingHorizontal:20,position:'relative',zIndex:2},
-    forgotbtn:{borderBottomWidth:1,borderBottomColor:'#52c7cb'},
-    forgottouch:{width:'100%',marginBottom:10},
-    forgottext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
-    regtext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
   
   
 })

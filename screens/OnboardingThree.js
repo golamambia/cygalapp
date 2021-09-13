@@ -41,13 +41,13 @@ const OnboardingThree = ({ navigation }) => {
 
                     <View style={styles.flewThree} >
                         <View style={{paddingVertical:5}}>
-        <TouchableOpacity  style={styles.flexthreeTouch}>
-            <Text style={styles.flexthreeTouchtext} >Next</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.flexthreeTouch}>
+            <Text style={styles.flexthreeTouchtext} >LOGIN</Text>
         </TouchableOpacity>
         </View>
         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('OnboardingTwo')} style={styles.flexthreeTouchtwo}>
-            <Text style={styles.flexthreeTouchtextTwo} >Skip</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Registration')} style={styles.flexthreeTouchtwo}>
+            <Text style={styles.flexthreeTouchtextTwo} >REGISTER</Text>
         </TouchableOpacity>
         </View>
                     </View>

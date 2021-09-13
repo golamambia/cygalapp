@@ -17,7 +17,9 @@ const App = (props) => {
     <>
       <Navigation />
       {isVisible === true ?<ImageBackground style={{width:SIZES.width, height:SIZES.height}} source={require('./assets/images/splash.png')} >
-        <View  style={{flex: 1, justifyContent: "center", alignItems: "center"}}><Image style={{width:SIZES.width * (2/3), height:SIZES.width * (2/3)}} source={require('./assets/images/logo.png')} /></View>
+        <View  style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+          {/* <Image style={{width:SIZES.width * (2/3), height:SIZES.width * (2/3)}} source={require('./assets/images/logo.png')} /> */}
+        </View>
       </ImageBackground> : null}
     </>
   );
