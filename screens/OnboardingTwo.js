@@ -46,7 +46,7 @@ const OnboardingTwo = ({ navigation }) => {
         </TouchableOpacity>
         </View>
         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('OnboardingOne')} style={styles.flexthreeTouchtwo}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.flexthreeTouchtwo}>
             <Text style={styles.flexthreeTouchtextTwo} >Skip</Text>
         </TouchableOpacity>
         </View>

@@ -8,7 +8,7 @@ export const COLORS = {
     black: "#000000",
     white: "#ffffff",
 
-    cyan: "#33A29B",
+    cyan: "#11bcc3",
     blue: "#0A4AA2",
     cilver: "#CECCCC",
     gray: "#979292",
@@ -43,7 +43,13 @@ export const SIZES = {
     body5: 12,
 
     width,
-    height
+    height,
+    light:'300',
+    regular:'400',
+    medium:'500',
+    semibold:'600',
+    bold:'700',
+    thik:'900'
 };
 
 export const FONTS = {

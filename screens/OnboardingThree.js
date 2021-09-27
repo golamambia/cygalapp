@@ -41,7 +41,7 @@ const OnboardingThree = ({ navigation }) => {
 
                     <View style={styles.flewThree} >
                         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.flexthreeTouch}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.flexthreeTouch}>
             <Text style={styles.flexthreeTouchtext} >LOGIN</Text>
         </TouchableOpacity>
         </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     main: {flex: 1},
     flewOne:{flex:3.5},
     flewTwo:{flex:1,alignItems:'center'},
-    flextwoView:{padding:30,paddingHorizontal:40},
+    flextwoView:{padding:30,paddingHorizontal:20},
     flextwoText:{fontSize:22,color:COLORS.black,textAlign:'center',textTransform:'capitalize'},
     flextwoTouch:{alignItems:'center',flexDirection:'row',justifyContent:'center',marginTop:15},
     touchOne:{width:15,height:7,backgroundColor:'#11bcc3',borderRadius:5,marginRight:5},

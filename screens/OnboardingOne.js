@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image,TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image,TouchableOpacity,SafeAreaView } from 'react-native';
 import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,6 +7,8 @@ import BottonCommon from '../component/BottonCommon';
 
 const OnboardingOne = ({ navigation }) => {
     return (
+       
+
         <View style={styles.container}>
             <StatusBar
                 backgroundColor="transparent"
@@ -45,7 +47,7 @@ const OnboardingOne = ({ navigation }) => {
         </TouchableOpacity>
         </View>
         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('GetstartedPage')} style={styles.flexthreeTouchtwo}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.flexthreeTouchtwo}>
             <Text style={styles.flexthreeTouchtextTwo} >Skip</Text>
         </TouchableOpacity>
         </View>
@@ -54,9 +56,10 @@ const OnboardingOne = ({ navigation }) => {
                
             </View>
             
-             
+           
        
         </View>
+     
     );
 };
 
@@ -65,8 +68,7 @@ export default OnboardingOne;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-      
+            
        
     },
    

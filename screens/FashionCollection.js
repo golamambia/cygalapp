@@ -18,7 +18,7 @@ const FashionCollection = ({ navigation }) => {
             />
           
           <View style={styles.profile_body}>
-          <ScrollView>
+          <ScrollView  showsVerticalScrollIndicator={false}>
             <View >
                
 
@@ -231,10 +231,13 @@ imgdiscount:{
 },
 fashiontextbox:{position:'absolute',top:25,bottom:0,left:15},
 fashiontitle:{fontSize:28,fontWeight:'700',textTransform:'uppercase',},
-latestfashionbox:{width:174,marginRight:10,marginBottom:20,position:'relative'},
+latestfashionbox:{width:'47%',marginRight:'3%',marginBottom:20,position:'relative',},
+'latestfashionbox:last-child':{ 
+    marginRight:0, 
+},
 ltboxtitle:{marginLeft:10,marginRight:15},
 ltfashiontext:{fontSize:16,color:'#000',fontWeight:'300'},
-fashionimg:{resizeMode:'cover',borderRadius:10},
+fashionimg:{width:'100%',resizeMode:'cover',borderRadius:10},
 catbox:{marginBottom:15,flexDirection: "row",
 flexWrap: "wrap",},
 catleftbox:{marginRight:10,borderWidth:1,alignItems:'center',justifyContent:'center'

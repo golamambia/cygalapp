@@ -6,7 +6,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import {
     createDrawerNavigator,
     DrawerContentScrollView,
-    DrawerItem,
     DrawerItemList,
   } from '@react-navigation/drawer'; 
 import {Login, Registration,GetstartedPage,OnboardingOne,OnboardingTwo,OnboardingThree,

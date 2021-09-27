@@ -57,7 +57,7 @@ const Login = ({ navigation }) => {
                         
                         </View>
 
-                        <View>
+                        <View> 
                                     <Text style={{fontSize:15,color:'#ffffff',}}>Remember this Account</Text>
                                 </View>
 
@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
 
               </View>
               <View style={styles.loginbtn}>
-              <TouchableOpacity style={styles.logintouch}  onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity style={styles.logintouch}  onPress={() => navigation.navigate('Home')}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         color: COLORS.cyan,
         fontWeight: 'bold'
     },
-    background:{position:'absolute',bottom:185,left:0,width:'100%',height:335,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
+    background:{position:'absolute',bottom:190,left:0,width:'100%',height:335,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
     formstart:{flex:3,paddingHorizontal:20,position:'relative',zIndex:2},
     formInner:{alignItems:'center',paddingTop:120,marginBottom:25},
     imgbox:{width:94,height:94,marginBottom:10},
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     boxtitle:{color:'#fff',textTransform:'uppercase',fontSize:18},
     inputIcon:{position:'absolute',top:18,left:12,zIndex:1},
     loginbtn:{flex:.6,alignItems:'center',position:'relative',zIndex:2},
-    logintouch:{backgroundColor:'#fff',width:'100%',padding:18,borderBottomLeftRadius:60,},
+    logintouch:{backgroundColor:'#fff',width:'100%',padding:20,borderBottomLeftRadius:60,},
     loginbelow:{flex:1,paddingHorizontal:20,position:'relative',zIndex:2},
     forgotbtn:{borderBottomWidth:1,borderBottomColor:'#52c7cb'},
     forgottouch:{width:'100%',marginBottom:10},

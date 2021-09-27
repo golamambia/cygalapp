@@ -14,7 +14,11 @@ import Categories from "./Categories";
 import EcommorceCollection from "./EcommorceCollection";
 import FashionCollection from "./FashionCollection";
 import ConfirmNumber from "./ConfirmNumber";
-
+import Checkout from "./Checkout";
+import Home from "./Home";
+import PaymentSuccess from "./PaymentSuccess";
+import Payment from "./Payment";
+import FashionDetails from "./FashionDetails";
 export {
 
     Login,
@@ -32,7 +36,12 @@ export {
     Categories,
     EcommorceCollection,
     FashionCollection,
-    ConfirmNumber
+    ConfirmNumber,
+    Checkout,
+    Home,
+    PaymentSuccess,
+    Payment,
+    FashionDetails
    
     
 }
