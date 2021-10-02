@@ -38,17 +38,7 @@ const Payment = ({ navigation }) => {
       <Image source={require("../assets/images/paypal.png")} />
           </View>
       </View>
-      <View style={{borderWidth:0.5,borderColor:'#ebebeb',marginVertical:10}}></View>
-      <View style={{flexDirection:'row',marginBottom:10}}>
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      />
-      <View style={{marginLeft:5}}>
-      <Image source={require("../assets/images/amazonpay.png")} />
-          </View>
-      </View>
+     
       
       <View style={{borderWidth:0.5,borderColor:'#ebebeb',marginVertical:10}}></View>
       <View style={{flexDirection:'row',marginBottom:10}}>

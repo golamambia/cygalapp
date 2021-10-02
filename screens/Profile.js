@@ -15,11 +15,19 @@ const Login = ({ navigation }) => {
                 translucent={true}
             />
           
-         
+          
+           
             
               <View style={styles.profile_body}>
+              <ScrollView style={{marginBottom:20}} contentContainerStyle={{
+        
+         justifyContent: 'center',
+         alignContent: 'center',
+       }}
+       keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+      >
               <View style={styles.container}>
-              
+              <KeyboardAvoidingView enabled>
             <View style={styles.profile_icon}>
             <Image source={require("../assets/images/profile_user.png")} />
                   <View style={styles.profile_penicon}>
@@ -28,7 +36,7 @@ const Login = ({ navigation }) => {
               </View>
         <View style={styles.formbox}>
        
-        <KeyboardAvoidingView enabled>
+       
         <View style={styles.formfield}>
             <View style={styles.label}>
         <Text style={styles.label_text}>First Name</Text>
@@ -81,14 +89,14 @@ const Login = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Categories')} style={styles.flexthreeTouch}>
             <Text style={styles.Touchtext} >Change password</Text>
         </TouchableOpacity>
-        </KeyboardAvoidingView>
+       
        
         </View>
-      
+        </KeyboardAvoidingView>
             </View>
-
+            </ScrollView>
               </View>
-              
+             
              
           
         </View>
@@ -113,10 +121,10 @@ const styles = StyleSheet.create({
        bottom:0,
        left:0,
        width:'100%',
-       height:570,
+       height:'85%',
        borderTopRightRadius:70,
+       paddingTop:20,
        
-       paddingVertical:20
     },
 
     input: {

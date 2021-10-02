@@ -1,11 +1,14 @@
 import React, { useState }  from 'react';
-import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image, TouchableHighlight ,TouchableOpacity} from 'react-native';
+import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image, TouchableHighlight 
+    ,TouchableOpacity,KeyboardAvoidingView,ScrollView} from 'react-native';
 import { COLORS, SIZES, FONTS } from '../constants/theme'
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import BottonCommon from '../component/BottonCommon'
+import BottonCommon from '../component/BottonCommon';
+import { Checkbox } from 'react-native-paper';
 
 const Login = ({ navigation }) => {
+    const [checked, setChecked] = React.useState(false);
     const [isSelected, setSelection] = useState(false);
     return (
         <View style={styles.container}>
@@ -15,7 +18,13 @@ const Login = ({ navigation }) => {
             />
           
             <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
-            <View style={styles.background}></View>
+            <ScrollView style={{ marginTop:110}} contentContainerStyle={{
+         
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}
+        keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+       >
               <View style={styles.formstart}>
               <View >
             <View style={styles.formInner}>
@@ -24,15 +33,17 @@ const Login = ({ navigation }) => {
 
                     </View>
                     <View>
-                        <Text style={styles.boxtitle}>login </Text>
+                        <Text style={styles.boxtitle}>login  </Text>
                     </View>
               </View>
 
-            <View >
+             
+        <View>
+          <KeyboardAvoidingView enabled>
+              <View style={{paddingHorizontal:20,paddingBottom:20}}>
                     <View style={{position:'relative'}}>
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                      
                        <Image source={require("../assets/images/uicon.png")} />
 
                            </View>
@@ -44,8 +55,7 @@ const Login = ({ navigation }) => {
                         </View>
                         <View style={{position:'relative'}}>
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                      
                        <Image source={require("../assets/images/lockicon.png")} />
 
                            </View>
@@ -57,23 +67,36 @@ const Login = ({ navigation }) => {
                         
                         </View>
 
-                        <View> 
-                                    <Text style={{fontSize:15,color:'#ffffff',}}>Remember this Account</Text>
+                        <View style={{position:'relative',marginLeft:-5}}> 
+                    <Text style={{fontSize:15,color:'#ffffff',}}><Checkbox uncheckedColor='white' color='white'
+      status={checked ? 'checked' : 'unchecked'}
+onPress={() => {
+        setChecked(!checked);
+      }}
+    /> </Text>
+    <Text style={{position:'absolute',top:6,left:40,fontSize:15,color:'#ffffff',}}>Remember this Account</Text>
                                 </View>
 
                         
+                       </View>
 
 
-            </View>
-            </View>
-
-              </View>
-              <View style={styles.loginbtn}>
+            <View style={styles.loginbtn}>
               <TouchableOpacity style={styles.logintouch}  onPress={() => navigation.navigate('Home')}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    
                         </View>
+
+
+                        </KeyboardAvoidingView>
+            </View>
+           
+            </View>
+
+
+              </View>
+             
                         <View style={styles.loginbelow}>
                             <View style={styles.forgotbtn}>
                             <TouchableOpacity style={styles.forgottouch} onPress={() => navigation.navigate('Forgotpassword')}>
@@ -93,6 +116,7 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
                             </View>
                         </View>
+                        </ScrollView>
             </ImageBackground>
         </View>
     );
@@ -117,7 +141,7 @@ const styles = StyleSheet.create({
 
         width: '100%',
         height: '100%',
-       
+      
         
     },
     input: {
@@ -155,16 +179,17 @@ const styles = StyleSheet.create({
         color: COLORS.cyan,
         fontWeight: 'bold'
     },
-    background:{position:'absolute',bottom:190,left:0,width:'100%',height:335,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
-    formstart:{flex:3,paddingHorizontal:20,position:'relative',zIndex:2},
-    formInner:{alignItems:'center',paddingTop:120,marginBottom:25},
+      formstart:{backgroundColor:'#34bbc1',position:'relative',zIndex:2,borderTopRightRadius:60,borderBottomLeftRadius:60,
+    marginTop:90,marginBottom:0
+},
+    formInner:{alignItems:'center',marginBottom:24,marginTop:-50},
     imgbox:{width:94,height:94,marginBottom:10},
     boximg:{width:'100%',height:'100%',resizeMode:'cover'},
     boxtitle:{color:'#fff',textTransform:'uppercase',fontSize:18},
     inputIcon:{position:'absolute',top:18,left:12,zIndex:1},
-    loginbtn:{flex:.6,alignItems:'center',position:'relative',zIndex:2},
+    loginbtn:{alignItems:'center',position:'relative',zIndex:2},
     logintouch:{backgroundColor:'#fff',width:'100%',padding:20,borderBottomLeftRadius:60,},
-    loginbelow:{flex:1,paddingHorizontal:20,position:'relative',zIndex:2},
+    loginbelow:{paddingHorizontal:20,position:'relative',zIndex:2,paddingTop:24},
     forgotbtn:{borderBottomWidth:1,borderBottomColor:'#52c7cb'},
     forgottouch:{width:'100%',marginBottom:10},
     forgottext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},

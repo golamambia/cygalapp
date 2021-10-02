@@ -16,15 +16,21 @@ const Contactus = ({ navigation }) => {
                 translucent={true}
             />
           
-        
+          <ScrollView   contentContainerStyle={{
+        flex:1
+         
+       }}  
+       keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+      >
             
               <View style={styles.profile_body}>
-              <View style={styles.container}>
-              
+         
             
+              <View style={styles.container}>
+              <KeyboardAvoidingView enabled>
         <View style={styles.formbox}>
        
-        <KeyboardAvoidingView enabled>
+        
         <View style={styles.formfield}>
         <View style={styles.label}>
         <Text style={styles.label_text}>Your First Name</Text>
@@ -80,17 +86,7 @@ const Contactus = ({ navigation }) => {
                             placeholder="Type Text"
                             placeholderTextColor="#000" 
                         />
-                        {/* <View  style={styles.input}>
-              <Picker 
-        selectedValue={selectedValue}
-        style={{ height: 52, width: '100%', borderWidth: 1,
-        borderColor:'#a9a9a9',}}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
-      </View> */}
+              
         </View>
 
 
@@ -99,15 +95,15 @@ const Contactus = ({ navigation }) => {
             <Text style={styles.flexthreeTouchtext} >Send</Text>
         </TouchableOpacity>
         
-        </KeyboardAvoidingView>
+        
         
         </View>
-      
+        </KeyboardAvoidingView>
             </View>
-
+            
               </View>
-              
-           
+              </ScrollView>
+          
           
         </View>
     );
@@ -131,10 +127,10 @@ const styles = StyleSheet.create({
        bottom:0,
        left:0,
        width:'100%',
-       height:570,
+       height:'85%',
        borderTopRightRadius:70,
        
-       paddingVertical:20
+      
     },
 
     input: {

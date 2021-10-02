@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image,TouchableOpacity } from 'react-native';
 import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
@@ -6,6 +6,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
 
 const ConfirmNumber = ({ navigation }) => {
+    const [placeholder, setplaceholder] = useState("*");
+    const [placeholder2, setplaceholder2] = useState("*");
+    const [placeholder3, setplaceholder3] = useState("*");
+    const [placeholder4, setplaceholder4] = useState("*");
     return (
         <View style={styles.container}>
         <StatusBar
@@ -35,28 +39,28 @@ your account.</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="*"
-                        placeholderTextColor="#ffffff" 
+                        placeholderTextColor="#ffffff"  keyboardType="numeric"   maxLength={1} textAlign={'center'}
                     />
                     </View>
                     <View style={{flex:1,alignItems:'center'}}>
                     <TextInput
                         style={styles.input}
                         placeholder="*"
-                        placeholderTextColor="#ffffff" 
+                        placeholderTextColor="#ffffff" keyboardType="numeric"   maxLength={1}
                     />
                     </View>
                     <View style={{flex:1,alignItems:'center'}}>
                     <TextInput
                         style={styles.input}
                         placeholder="*"
-                        placeholderTextColor="#ffffff" 
+                        placeholderTextColor="#ffffff" keyboardType="numeric"   maxLength={1}
                     />
                     </View>
                     <View style={{flex:1,alignItems:'center'}}>
                     <TextInput
                         style={styles.input}
                         placeholder="*"
-                        placeholderTextColor="#ffffff" 
+                        placeholderTextColor="#ffffff" keyboardType="numeric"   maxLength={1}
                     />
                     </View>
                     

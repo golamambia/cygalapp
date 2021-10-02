@@ -1,4 +1,4 @@
-// import 'react-native-gesture-handler';
+import 'react-native-gesture-handler';
 import React from "react";
 import { View, Text, StyleSheet,TouchableOpacity,Image,ImageBackground } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -25,110 +25,67 @@ import MapMakerOutline from "../component/icons/MapMakerOutline";
 import CartVariant from "../component/icons/CartVariant";
 // import Animated from 'react-native-reanimated';
 // import { useSafeAreaFrame } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {DrawerActions} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const fourthScreenStack = ({navigation}) => {
-    return (
-      <Stack.Navigator
-        >
-        <Stack.Screen options={{ headerShown: false,swipeEnabled: false,}} name="GetstartedPage" component={GetstartedPage} />
-      </Stack.Navigator>
-    );
-  };
 const Index = () => {
     const handleBackButtonClick = () => {
        alert('lol');
     }
     return (
-        
+        <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}> 
         <NavigationContainer>
            
-            <Drawer.Navigator initialRouteName="fourthScreenStack" screenOptions={{
-              
+            <Drawer.Navigator screenOptions={{
+               
                 drawerActiveTintColor:COLORS.white,
-                drawerActiveBackgroundColor:'#3ebfc4',
-                drawerInactiveTintColor:'#fff',
-                borderRightRadious: 90,
-                drawerLabelStyle: { fontSize:15,fontWeight:SIZES.regular,},
-                drawerItemStyle:{
-                    borderTopRightRadius:50,borderBottomEndRadius:50,width:'75%',marginLeft:0
-                },
+                drawerActiveBackgroundColor:COLORS.cyan,
+               
     drawerStyle: {
     //   backgroundColor:COLORS.cyan,
-    
+      
     },
   }}
-  drawerContent={props => {
+  drawerContent={(props) => {
     const filteredProps = {
       ...props,
       state: {
         ...props.state,
-        routeNames: props.state.routeNames.filter((routeName) => {
-          routeName !== 'fourthScreenStack';
-        },
+        routeNames: props.state.routeNames.filter(
+         
+          (routeName) => {
+            routeName !== 'GetstartedPage'
+            && routeName !== 'OnboardingOne'
+            && routeName !== 'OnboardingTwo'
+            && routeName !== 'OnboardingThree';
+          },
         ),
-        routes: props.state.routes.filter((route)  => route.name !== 'fourthScreenStack' 
-       ),
+        // routes: props.state.routes.filter(
+        //   (route) =>
+        //     route.name !== 'GetstartedPage'
+        //     && route.name !== 'OnboardingOne'
+        //     && route.name !== 'OnboardingTwo' 
+        //     && route.name !== 'OnboardingThree',
+        // ),
       },
     };
     return (
-        <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}> 
-      <DrawerContentScrollView {...filteredProps} showsVerticalScrollIndicator={false} >
-          {/* <View style={{marginTop:30,marginBottom:50}}>
-              <TouchableOpacity onPress={(props) => alert('Logged out')}><AntDesign
-                                style={styles.menuButtom}
-                                color={COLORS.white}
-                                onPress={() => alert('Logged out')}
-                                name="arrowleft"
-                                size={20}
-                            /></TouchableOpacity>
-      <Text style={{color:'#fff',fontSize:16,fontWeight:SIZES.regular,textAlign:'center',marginTop:-22}}>Menu</Text>
-      </View> */}
-      <View >
-      <DrawerItem icon={() =><AntDesign
-                                style={styles.menuButtom}
-                                color={COLORS.white}
-                                onPress={() => props.navigation.toggleDrawer()}
-                                name="arrowleft"
-                                size={20}
-                            />} label={() =><Text style={{color:'#fff',fontSize:16,
-                            fontWeight:SIZES.regular,textAlign:'center',marginTop:-10,marginRight:10}}>Menu</Text>}
-        style={{marginLeft:0,marginBottom:30,marginTop:30}} 
-        
-      /> 
-        <DrawerItemList {...filteredProps} />
-       
-        </View>
-        {/* <DrawerItem label={() => <Text style={{ color: 'white' }}>Logout</Text>}
-        style={{backgroundColor: 'red',borderTopRightRadius:50,borderBottomEndRadius:50,width:'75%'}} 
-        onPress={() => alert('Logged out')}
-      /> */}
-      </DrawerContentScrollView>
-      </ImageBackground>
-    );
-  }}
+        <DrawerContentScrollView {...filteredProps}>
+          <DrawerItemList {...filteredProps} />
+        </DrawerContentScrollView>
+      );
+    }}
   >
-      
-               {/* <Stack.Screen options={{ headerShown: false,swipeEnabled: false, }} name="GetstartedPage" component={GetstartedPage} />   */}
+                 <Stack.Screen options={{ headerShown: false,swipeEnabled: false,}} name="GetstartedPage" component={GetstartedPage} />
+                 <Stack.Screen options={{ headerShown: false,swipeEnabled: false, }} name="OnboardingOne" component={OnboardingOne} />
+            <Stack.Screen options={{ headerShown: false,swipeEnabled: false,}} name="OnboardingTwo" component={OnboardingTwo} />
+            <Stack.Screen options={{ headerShown: false,swipeEnabled: false, }} name="OnboardingThree" component={OnboardingThree} />
         <Drawer.Screen name="Home" component={Home} options={({ navigation, route }) => ({
                         headerTitle:  (
                             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}> 
                             <Image source={require("../assets/images/homelogo.png")} /></View>
                         ),
-                       drawerStyle:{
-
-                       },
-                        drawerIcon: ({tintColor}) =>
-    (
-      <AntDesign name="home" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-      
-
-    ),
-    
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.black,
@@ -142,39 +99,18 @@ const Index = () => {
                     </View>
                     })} />
         <Drawer.Screen options={({ navigation, route }) => ({
-            drawerIcon: ({tintColor}) =>
-            (
-              <AntDesign name="user" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-              
-        
-            ),
                         headerTitle: 'Login',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
-                    })}
-                    
-                    name="Login" component={Login}  />
+                    })} name="Login" component={Login} />
         <Drawer.Screen  name="Registration" component={Registration} options={({ navigation, route }) => ({
-             drawerIcon: ({tintColor}) =>
-             (
-               <AntDesign name="user" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-               
-         
-             ),
                         headerTitle: 'Register',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                     })} />
                      <Drawer.Screen options={({ navigation, route }) => ({
-                         
-                          drawerIcon: ({tintColor}) =>
-                          (
-                            <AntDesign name="info" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-                            
-                      
-                          ),
                         headerTitle: 'About Us',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -191,14 +127,8 @@ const Index = () => {
                             />
                             
                         ),
-                    })} name="About" component={Aboutus} />   
+                    })} name="Aboutus" component={Aboutus} />   
                      <Drawer.Screen options={({ navigation, route }) => ({
-                          drawerIcon: ({tintColor}) =>
-                          (
-                            <AntDesign name="mail" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-                            
-                      
-                          ),
                         headerTitle: 'Contact Us',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -206,34 +136,19 @@ const Index = () => {
                         headerTitleStyle: { fontSize: 20,fontWeight:'500'},
                     })} name="Contact Us" component={Contactus} /> 
                        <Drawer.Screen options={({ navigation, route }) => ({
-                           drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: 'Forgot Password',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
-                    })} name="Forgot Password" component={Forgotpassword} />
+                    })} name="Forgotpassword" component={Forgotpassword} />
            <Drawer.Screen options={({ navigation, route }) => ({
-                drawerLabelStyle:{
-                    paddingLeft:8,
-                    fontSize:15,
-                    fontWeight:SIZES.regular
-                },
                         headerTitle: 'Confirm Number',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                     })} name="ConfirmNumber" component={ConfirmNumber} />
-            {/* <Drawer.Screen options={{ headerShown: false }} name="Otpverified" component={Otpverified} />     */}
+            <Drawer.Screen options={{ headerShown: false }} name="Otpverified" component={Otpverified} />    
             <Drawer.Screen options={({ navigation, route }) => ({
-                 drawerLabelStyle:{
-                    paddingLeft:8,
-                    fontSize:15,
-                    fontWeight:SIZES.regular
-                },
                         headerTitle: 'Profile',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -241,11 +156,6 @@ const Index = () => {
                         headerTitleStyle: { fontSize: 20,fontWeight:'500'},
                     })} name="Profile" component={Profile} />
                     <Drawer.Screen options={({ navigation, route }) => ({
-                         drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: 'Enquery',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -254,13 +164,6 @@ const Index = () => {
                     })} name="Enquery" component={Enquery} /> 
                    
                    <Drawer.Screen options={({ navigation, route }) => ({
-                         drawerIcon: ({tintColor}) =>
-                         (
-                           <AntDesign name="creditcard" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-                           
-                     
-                         ),
-                             
                         headerTitle: 'Payment',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -283,12 +186,6 @@ const Index = () => {
                      </View>
                     })} name="Payment" component={Payment} />
                <Drawer.Screen options={({ navigation, route }) => ({
-                   drawerIcon: ({tintColor}) =>
-                   (
-                     <AntDesign name="table" style={{marginRight:-22,marginLeft:5}} color='#fff' width={20}  size={20}/>
-                     
-               
-                   ),
                         headerTitle: 'Categories',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -306,11 +203,6 @@ const Index = () => {
                         ),
                     })} name="Categories" component={Categories} /> 
                     <Drawer.Screen options={({ navigation, route }) => ({
-                         drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: 'E-commorce Collection',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -328,11 +220,6 @@ const Index = () => {
                         ),
                     })} name="EcommorceCollection" component={EcommorceCollection} /> 
                       <Drawer.Screen options={({ navigation, route }) => ({
-                           drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: 'Fashion Collection',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -350,11 +237,6 @@ const Index = () => {
                         ),
                     })} name="FashionCollection" component={FashionCollection} /> 
                     <Drawer.Screen options={({ navigation, route }) => ({
-                         drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: 'Checkout',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -378,11 +260,6 @@ const Index = () => {
                     })} name="Checkout" component={Checkout} /> 
                
                     <Drawer.Screen options={({ navigation, route }) => ({
-                         drawerLabelStyle:{
-                            paddingLeft:6,
-                            fontSize:15,
-                            fontWeight:SIZES.regular
-                        },
                         headerTitle: '',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -401,11 +278,6 @@ const Index = () => {
                         
                     })} name="FashionDetails" component={FashionDetails} />
                        <Drawer.Screen options={({ navigation, route }) => ({
-                            drawerLabelStyle:{
-                                paddingLeft:8,
-                                fontSize:15,
-                                fontWeight:SIZES.regular
-                            },
                         headerTitle: 'Payment Successful',
                         headerTitleAlign: 'center',
                         headerTransparent: true,
@@ -427,18 +299,10 @@ const Index = () => {
                          
                      </View>
                     })} name="PaymentSuccess" component={PaymentSuccess} />
-                     <Drawer.Screen options={{ headerShown: false,swipeEnabled: false, }} name="fourthScreenStack" component={fourthScreenStack} />
-                    <Stack.Screen options={{ headerShown: false,swipeEnabled: false, drawerLabel: () => null,
-                title: null,}} name="OnboardingOne" component={OnboardingOne} />
-                    <Stack.Screen options={{ headerShown: false,swipeEnabled: false,drawerLabel: () => null,
-                title: null, }} name="OnboardingTwo" component={OnboardingTwo} />
-                 {/* <Stack.Screen options={{ headerShown: false,swipeEnabled: false, }} name="OnboardingOne" component={OnboardingOne} />
-            <Drawer.Screen options={{ headerShown: false,swipeEnabled: false,}} name="OnboardingTwo" component={OnboardingTwo} />
-            <Drawer.Screen options={{ headerShown: false,swipeEnabled: false, }} name="OnboardingThree" component={OnboardingThree} /> */}
       </Drawer.Navigator>
      
         </NavigationContainer>
-      
+        </ImageBackground>
     )
 }
 

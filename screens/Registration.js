@@ -1,12 +1,15 @@
 import React,{ useState } from 'react';
-import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image,TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image 
+    ,TouchableOpacity,KeyboardAvoidingView,ScrollView} from 'react-native';
 import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
 import {Picker} from '@react-native-community/picker';
+import { Checkbox } from 'react-native-paper';
 
 const Registration = ({ navigation }) => {
+    const [checked, setChecked] = React.useState(false);
     const [selectedValue, setSelectedValue] = useState("java");
     return (
         <View style={styles.container}>
@@ -16,7 +19,10 @@ const Registration = ({ navigation }) => {
             />
           
             <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
-            <View style={styles.background}></View>
+            <ScrollView style={{marginTop:65}}
+        keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+       >
+        
               <View style={styles.formstart}>
               <View >
             <View style={styles.formInner}>
@@ -28,12 +34,12 @@ const Registration = ({ navigation }) => {
                         <Text style={styles.boxtitle}>Register </Text>
                     </View>
               </View>
-
-            <View style={{position:'relative'}}>
+          
+          <KeyboardAvoidingView enabled>
+            <View style={{position:'relative',paddingHorizontal:20,}}>
                     <View >
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                      
                        <Image source={require("../assets/images/uicon.png")} />
 
                            </View>
@@ -45,8 +51,7 @@ const Registration = ({ navigation }) => {
                         </View>
                         <View >
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       
                        <Image source={require("../assets/images/emailicon.png")} />
 
                            </View>
@@ -59,8 +64,7 @@ const Registration = ({ navigation }) => {
                         
                         <View >
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                       
                        <Image source={require("../assets/images/lockicon.png")} />
 
                            </View>
@@ -75,8 +79,7 @@ const Registration = ({ navigation }) => {
                         <View style={{justifyContent:'space-between',flexDirection:'row',}}>
                             <View style={{flex:2,paddingRight:10}}>
                        <View style={styles.inputIcon}>
-                       {/* <Icon name="user" size={30} color="#900" />
-                       <Icon name="Star" size={30} color={COLORS.cyan}/> */}
+                      
                        <Image source={require("../assets/images/phoneicon.png")} />
 
                            </View>
@@ -88,20 +91,7 @@ const Registration = ({ navigation }) => {
                 </View>
                 <View style={{flex:1.5}}>
                        
-                        {/* <TextInput
-                            style={{ height: 58,
-                                marginBottom: SIZES.padding2,
-                                borderWidth: 1,
-                                borderColor:'#5bc3c8',
-                                paddingHorizontal: SIZES.padding,
-                                fontSize: 15,
-                                borderRadius:5,
-                                backgroundColor:'#5bc3c8',
-                                color:'#ffffff',
-                                paddingLeft:10}}
-                            placeholder="Country"
-                            placeholderTextColor="#ffffff" 
-                        /> */}
+                      
                          <View  style={styles.input2}>
               <Picker 
         selectedValue={selectedValue}
@@ -114,21 +104,36 @@ const Registration = ({ navigation }) => {
       </View>
                         </View>
                         </View>
-                       
-                                <View>
-                                    <Text style={{fontSize:15,color:'#ffffff',paddingTop:5}}>Agree to Terms & Conditions</Text>
+                        <View style={{position:'relative',marginLeft:-5,paddingBottom:5}}> 
+                    <Text style={{fontSize:15,color:'#ffffff',}}><Checkbox uncheckedColor='white' color='white'
+      status={checked ? 'checked' : 'unchecked'}
+onPress={() => {
+        setChecked(!checked);
+      }}
+    /> </Text>
+    <Text style={{position:'absolute',top:6,left:40,fontSize:15,color:'#ffffff',}}>Agree to Terms & Conditions</Text>
                                 </View>
+                                {/* <View>
+                                    <Text style={{fontSize:15,color:'#ffffff',paddingTop:5,paddingBottom:20}}>Agree to Terms & Conditions</Text>
+                                </View> */}
 
             </View>
+
+            </KeyboardAvoidingView>
+           
             </View>
 
-              </View>
-              <View style={styles.loginbtn}>
+
+            <View style={styles.loginbtn}>
               <TouchableOpacity style={styles.logintouch}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    
                         </View>
+
+
+              </View>
+              
                         <View style={styles.loginbelow}>
                             <View style={styles.forgotbtn}>
                             <TouchableOpacity style={styles.forgottouch} onPress={() => navigation.navigate('Login')}>
@@ -141,6 +146,7 @@ const Registration = ({ navigation }) => {
                             
                             
                         </View>
+                        </ScrollView>
             </ImageBackground>
         </View>
     );
@@ -216,18 +222,19 @@ const styles = StyleSheet.create({
         color: COLORS.cyan,
         fontWeight: 'bold'
     },
-    background:{position:'absolute',bottom:80,left:0,width:'100%',height:455,backgroundColor:'#34bac0',zIndex:1,borderTopRightRadius:60,borderBottomLeftRadius:60},
-    formstart:{flex:6,paddingHorizontal:20,position:'relative',zIndex:2},
-    formInner:{alignItems:'center',paddingTop:100,marginBottom:25},
-    imgbox:{width:94,height:94,marginBottom:10},
+    formstart:{backgroundColor:'#34bbc1',position:'relative',zIndex:2,borderTopRightRadius:60,borderBottomLeftRadius:60,
+    marginTop:100,marginBottom:0
+},
+formInner:{alignItems:'center',marginBottom:24,marginTop:-50},
+    imgbox:{width:94,height:94,marginBottom:0},
     boximg:{width:'100%',height:'100%',resizeMode:'cover'},
     boxtitle:{color:'#fff',textTransform:'uppercase',fontSize:18},
     inputIcon:{position:'absolute',top:18,left:12,zIndex:1},
-    loginbtn:{flex:.6,alignItems:'center',position:'relative',zIndex:2},
+    loginbtn:{alignItems:'center',position:'relative',zIndex:2},
     logintouch:{backgroundColor:'#fff',width:'100%',padding:18,borderBottomLeftRadius:60,},
-    loginbelow:{flex:.5,paddingHorizontal:20,position:'relative',zIndex:2},
+    loginbelow:{paddingHorizontal:20,position:'relative',zIndex:2,marginTop:20},
     forgotbtn:{},
-    forgottouch:{width:'100%',marginBottom:10},
+    forgottouch:{width:'100%',marginBottom:0},
     forgottext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
     regtext:{color:'#f0f0f0',textAlign:'center',fontSize:15,textTransform:'capitalize'},
   

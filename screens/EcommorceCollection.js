@@ -18,7 +18,7 @@ const EcommorceCollection = ({ navigation }) => {
             />
           
           <View style={styles.profile_body}>
-          <ScrollView>
+          <ScrollView  showsVerticalScrollIndicator={false}>
             <View >
                 <View style={styles.fashionbox}>
                 <Image style={styles.img} source={require("../assets/images/ecom1.png")} />
@@ -85,11 +85,13 @@ const EcommorceCollection = ({ navigation }) => {
        <View style={{marginTop:30}}>
      <Text style={styles.cattitle}>Categories</Text>
        <View style={styles.catbox}>
-
+ 
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/fashioncat.png")} />
             <Text style={styles.catboxtext}>Fashion</Text>
@@ -101,7 +103,9 @@ const EcommorceCollection = ({ navigation }) => {
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/appliance.png")} />
             <Text style={styles.catboxtext}>Appliance</Text>
@@ -115,7 +119,9 @@ const EcommorceCollection = ({ navigation }) => {
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/neclace.png")} />
             <Text style={styles.catboxtext}>Jewellery</Text>
@@ -129,7 +135,9 @@ const EcommorceCollection = ({ navigation }) => {
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/furniture.png")} />
             <Text style={styles.catboxtext}>furniture</Text>
@@ -142,7 +150,9 @@ const EcommorceCollection = ({ navigation }) => {
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/cosmetic.png")} />
             <Text style={styles.catboxtext}>cosmetic</Text>
@@ -156,7 +166,9 @@ const EcommorceCollection = ({ navigation }) => {
            <View style={styles.catleftbox}>
                <TouchableOpacity onPress={() => navigation.navigate('FashionCollection')}>
             <View style={styles.catboxcenter}>
-            <Image  source={require("../assets/images/cat1.png")} />
+            <View style={styles.catimgbox}>
+            <Image style={styles.catimage} source={require("../assets/images/cat1.png")} />
+            </View>
             <View style={styles.catfashionpos}>
             <Image  source={require("../assets/images/consulting.png")} />
             <Text style={styles.catboxtext}>consulting</Text>
@@ -274,9 +286,11 @@ ltfashiontext:{fontSize:16,color:'#000',fontWeight:'300'},
 fashionimg:{resizeMode:'cover',borderRadius:10},
 catbox:{marginBottom:15,flexDirection: "row",
 flexWrap: "wrap",},
-catleftbox:{marginRight:10,borderWidth:1,alignItems:'center',justifyContent:'center'
-,borderColor:'#c9c9c9',height:163,width:113,borderRadius:10,borderTopRightRadius:30,
-borderBottomLeftRadius:30,marginBottom:10
+catimgbox:{height:160,width:100,},
+catimage:{width:'100%',resizeMode:'cover',borderTopRightRadius:25,
+borderBottomLeftRadius:25,borderRadius:5},
+catleftbox:{marginRight:'1.3%',alignItems:'center',justifyContent:'center'
+,width:'32%',marginBottom:10
              
 },
 'catleftbox:nth-of-type(3n)':{
@@ -285,8 +299,8 @@ borderBottomLeftRadius:30,marginBottom:10
 catrightbox:{borderWidth:1,alignItems:'center',justifyContent:'center',
 flex:1,borderColor:'#c9c9c9',height:213,borderRadius:10,
 borderTopRightRadius:50,borderBottomLeftRadius:50},
-catboxtext:{marginTop:20,textTransform:'uppercase',fontSize:16,
-fontWeight:'500',textAlign:'center',marginBottom:20,color:'#fff'},
+catboxtext:{marginTop:20,textTransform:'uppercase',fontSize:14,
+fontWeight:SIZES.regular,textAlign:'center',marginBottom:20,color:'#fff'},
 catboxcenter:{alignItems:'center',position:'relative'},
 cattitle:{fontSize:16,fontWeight:'700',textTransform:'uppercase',color:'#000',marginBottom:15},
 catfashionpos:{position:'absolute',justifyContent:'center',alignItems:'center',marginTop:30},

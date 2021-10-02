@@ -32,7 +32,7 @@ const Categories = ({ navigation }) => {
                    </View>
                
                    </View>
-               <ScrollView >
+                   <ScrollView  showsVerticalScrollIndicator={false}>
        <View>
      
        <View style={styles.catbox}>

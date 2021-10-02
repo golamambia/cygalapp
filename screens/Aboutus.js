@@ -18,7 +18,7 @@ const Aboutus = ({ navigation }) => {
             />
           
           <View style={styles.profile_body}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}  >
             <View >
                 <View style={styles.imgbox}>
                 <Image style={styles.img} source={require("../assets/images/about2.png")} />
@@ -46,7 +46,7 @@ const Aboutus = ({ navigation }) => {
         
         <View style={{marginTop:20,flexDirection:'row',zIndex:11}}>
 
-<ScrollView horizontal={true}>
+<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 <View style={styles.imgdiscount}> 
 <Image style={{resizeMode:'cover',borderRadius:10}} source={require("../assets/images/about4.png")} />
     </View>

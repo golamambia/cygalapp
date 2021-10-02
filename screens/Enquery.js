@@ -21,7 +21,13 @@ const Enquery = ({ navigation }) => {
             
               <View style={styles.profile_body}>
               <View style={styles.container}>
-              <ScrollView>
+              <ScrollView  contentContainerStyle={{
+         
+         justifyContent: 'center',
+         alignContent: 'center',
+       }}
+       keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+      >
             <View style={styles.profile_icon}>
                 <View style={styles.imgbox}>
                 <Image source={require("../assets/images/enqueryimg.png")} />
@@ -151,7 +157,7 @@ const styles = StyleSheet.create({
        bottom:0,
        left:0,
        width:'100%',
-       height:570,
+       height:'85%',
        borderTopRightRadius:70,
        
        paddingVertical:20
