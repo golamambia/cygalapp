@@ -4,8 +4,14 @@ import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const OnboardingTwo = ({ navigation }) => {
+    const checkProcess = () => {
+        AsyncStorage.setItem('get_strtpage', 'yes');
+          
+          navigation.navigate('Home');
+    };
     return (
         <View style={styles.container}>
             <StatusBar
@@ -46,7 +52,7 @@ const OnboardingTwo = ({ navigation }) => {
         </TouchableOpacity>
         </View>
         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.flexthreeTouchtwo}>
+        <TouchableOpacity onPress={checkProcess} style={styles.flexthreeTouchtwo}>
             <Text style={styles.flexthreeTouchtextTwo} >Skip</Text>
         </TouchableOpacity>
         </View>

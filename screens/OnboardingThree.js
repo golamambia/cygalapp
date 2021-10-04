@@ -4,8 +4,19 @@ import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const OnboardingThree = ({ navigation }) => {
+    const loginProcess = () => {
+        AsyncStorage.setItem('get_strtpage', 'yes');
+          
+          navigation.navigate('Login');
+    };
+    const regProcess = () => {
+        AsyncStorage.setItem('get_strtpage', 'yes');
+          
+          navigation.navigate('Registration');
+    };
     return (
         <View style={styles.container}>
             <StatusBar
@@ -41,12 +52,12 @@ const OnboardingThree = ({ navigation }) => {
 
                     <View style={styles.flewThree} >
                         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.flexthreeTouch}>
+        <TouchableOpacity  onPress={logProcess} style={styles.flexthreeTouch}>
             <Text style={styles.flexthreeTouchtext} >LOGIN</Text>
         </TouchableOpacity>
         </View>
         <View style={{paddingVertical:5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Registration')} style={styles.flexthreeTouchtwo}>
+        <TouchableOpacity onPress={regProcess} style={styles.flexthreeTouchtwo}>
             <Text style={styles.flexthreeTouchtextTwo} >REGISTER</Text>
         </TouchableOpacity>
         </View>

@@ -4,8 +4,14 @@ import { COLORS, SIZES, FONTS } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const GetstartedPage = ({ navigation }) => {
+    const checkProcess = () => {
+        //AsyncStorage.setItem('get_strtpage', 'yes');
+         // console.log(1);
+          navigation.navigate('OnboardingOne');
+    };
     return (
         <View style={styles.container}>
             <StatusBar
@@ -21,7 +27,7 @@ const GetstartedPage = ({ navigation }) => {
 
                     <View style={{position:'absolute',bottom:45,width:'80%',}} >
                         
-                    <TouchableOpacity onPress={() => navigation.navigate('OnboardingOne')} style={{backgroundColor:'#fff',paddingVertical:15,paddingHorizontal:30,width:'100%',borderRadius:5}}>
+                    <TouchableOpacity onPress={checkProcess}  style={{backgroundColor:'#fff',paddingVertical:15,paddingHorizontal:30,width:'100%',borderRadius:5}}>
             <Text style={{color:'#0ba6ac',textAlign:'center',textTransform:'uppercase',fontSize:16,fontWeight:'700'}} >Get Started</Text>
         </TouchableOpacity>
                        
