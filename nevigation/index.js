@@ -78,7 +78,7 @@ const Index = () => {
         <NavigationContainer>
            
             <Drawer.Navigator  screenOptions={{
-              
+              swipeEnabled: false,
                 drawerActiveTintColor:COLORS.white,
                 drawerActiveBackgroundColor:'#3ebfc4',
                 drawerInactiveTintColor:'#fff',
@@ -273,6 +273,16 @@ const Index = () => {
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                         headerTitleStyle: { fontSize: 20,fontWeight:'500'},
+                        headerLeft: () => (
+                          <AntDesign
+                              style={styles.menuButtom}
+                              color={COLORS.white}
+                              onPress={() => navigation.goBack()}
+                              name="arrowleft"
+                              size={26}
+                          />
+                          
+                      ),
                     })} name="Contact Us" component={Contactus} /> 
                        <Drawer.Screen options={({ navigation, route }) => ({
                            drawerLabelStyle:{
@@ -284,6 +294,16 @@ const Index = () => {
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
+                        headerLeft: () => (
+                          <AntDesign
+                              style={styles.menuButtom}
+                              color={COLORS.white}
+                              onPress={() => navigation.goBack()}
+                              name="arrowleft"
+                              size={26}
+                          />
+                          
+                      ),
                     })} name="Forgot Password" component={Forgotpassword} />
            <Drawer.Screen options={({ navigation, route }) => ({
                 drawerLabelStyle:{
@@ -295,6 +315,16 @@ const Index = () => {
                         headerTitleAlign: 'center',
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
+                        headerLeft: () => (
+                          <AntDesign
+                              style={styles.menuButtom}
+                              color={COLORS.white}
+                              onPress={() => navigation.goBack()}
+                              name="arrowleft"
+                              size={26}
+                          />
+                          
+                      ),
                     })} name="ConfirmNumber" component={ConfirmNumber} />
             {/* <Drawer.Screen options={{ headerShown: false }} name="Otpverified" component={Otpverified} />     */}
             <Drawer.Screen options={({ navigation, route }) => ({
@@ -308,6 +338,16 @@ const Index = () => {
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                         headerTitleStyle: { fontSize: 20,fontWeight:'500'},
+                        headerLeft: () => (
+                          <AntDesign
+                              style={styles.menuButtom}
+                              color={COLORS.white}
+                              onPress={() => navigation.goBack()}
+                              name="arrowleft"
+                              size={26}
+                          />
+                          
+                      ),
                     })} name="Profile" component={Profile} />
                     <Drawer.Screen options={({ navigation, route }) => ({
                          drawerLabelStyle:{
@@ -321,6 +361,16 @@ const Index = () => {
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                         headerTitleStyle: { fontSize: 20,fontWeight:'500'},
+                        headerLeft: () => (
+                          <AntDesign
+                              style={styles.menuButtom}
+                              color={COLORS.white}
+                              onPress={() => navigation.goBack()}
+                              name="arrowleft"
+                              size={26}
+                          />
+                          
+                      ),
                     })} name="Enquery" component={Enquery} /> 
                    
                    <Drawer.Screen options={({ navigation, route }) => ({
