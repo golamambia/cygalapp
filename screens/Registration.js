@@ -1,16 +1,96 @@
-import React,{ useState } from 'react';
+import React,{ useState ,createRef} from 'react';
 import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image 
-    ,TouchableOpacity,KeyboardAvoidingView,ScrollView} from 'react-native';
-import { COLORS, SIZES, FONTS } from '../constants/theme';
+    ,TouchableOpacity,KeyboardAvoidingView,ScrollView,Keyboard} from 'react-native';
+import { COLORS, SIZES, FONTS,Hosturl } from '../constants/theme';
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottonCommon from '../component/BottonCommon';
 import {Picker} from '@react-native-community/picker';
 import { Checkbox } from 'react-native-paper';
+import Loader from '../component/Loader';
 
 const Registration = ({ navigation }) => {
     const [checked, setChecked] = React.useState(false);
     const [selectedValue, setSelectedValue] = useState("java");
+    const [userName, setUserName] = useState('');
+    const [userPhone, setUserPhone] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errortext, setErrortext] = useState('');
+  const nameInputRef = createRef();
+  const emailInputRef = createRef();
+  const passwordInputRef = createRef();
+  const phoneInputRef = createRef();
+ 
+  
+  const handleSubmitPress = () => {
+    setErrortext('');
+    if (!userName) {
+        alert('Please enter name');
+        return;
+      }
+    if (!userEmail) {
+      alert('Please enter email');
+      return;
+    }
+    if (!userPassword) {
+      alert('Please enter password');
+      return;
+    }
+    if (!userPhone) {
+        alert('Please enter phone no');
+        return;
+      }
+      if (!checked) {
+        alert('Please agree terms & conditions');
+        return;
+      }
+    setLoading(true);
+    let dataToSend = {name: userName,email: userEmail, password: userPassword, password_confirmation: userPassword,phone_number:userPhone};
+    let formBody = [];
+    for (let key in dataToSend) {
+      let encodedKey = encodeURIComponent(key);
+      let encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+
+   fetch(Hosturl.api+'register', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: userName,email: userEmail, password: userPassword, 
+        password_confirmation: userPassword,phone_number:userPhone
+      }),
+      headers: {
+        //Header Defination
+       
+        'Content-Type':'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Hide Loader
+        setLoading(false);
+        console.log(responseJson);
+        // If server response message same as Data Matched
+        if (responseJson.status) {
+         // AsyncStorage.setItem('user_id', responseJson.user_id);
+         alert('Thankyou for your registration');
+          navigation.navigate('Login');
+        } else {
+          setErrortext(responseJson.msg);
+          //console.log('Please check your email id or password');
+          alert(''+responseJson.message);
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        //console.error(error);
+        alert('Server error');
+      });
+  };
     return (
         <View style={styles.container}>
             <StatusBar
@@ -19,6 +99,7 @@ const Registration = ({ navigation }) => {
             />
           
             <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
+            <Loader loading={loading} />
             <ScrollView style={{marginTop:65}}
         keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
        >
@@ -47,6 +128,19 @@ const Registration = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Full Name"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserName) =>
+                                setUserName(UserName)
+                              }
+                             
+                              autoCapitalize="none"
+                             
+                              returnKeyType="next"
+                              onSubmitEditing={() =>
+                                emailInputRef.current &&
+                                emailInputRef.current.focus()
+                              }
+                              underlineColorAndroid="#f000"
+                              blurOnSubmit={false}
                         />
                         </View>
                         <View >
@@ -59,6 +153,19 @@ const Registration = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Email"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserEmail) =>
+                                setUserEmail(UserEmail)
+                              }
+                              ref={emailInputRef}
+                              autoCapitalize="none"
+                              keyboardType="email-address"
+                              returnKeyType="next"
+                              onSubmitEditing={() =>
+                                passwordInputRef.current &&
+                                passwordInputRef.current.focus()
+                              }
+                              underlineColorAndroid="#f000"
+                              blurOnSubmit={false}
                         />
                         </View>
                         
@@ -72,6 +179,20 @@ const Registration = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Password"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserPassword) =>
+                                setUserPassword(UserPassword)
+                              }
+                             
+                              keyboardType="default"
+                              ref={passwordInputRef}
+                              onSubmitEditing={() =>
+                                phoneInputRef.current &&
+                                phoneInputRef.current.focus()
+                              }
+                              blurOnSubmit={false}
+                              secureTextEntry={true}
+                              underlineColorAndroid="#f000"
+                              returnKeyType="next"
                         />
                         
                         </View>
@@ -87,6 +208,18 @@ const Registration = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Phone Number"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserPhone) =>
+                                setUserPhone(UserPhone)
+                              }
+                             
+                              keyboardType="numeric"
+                              ref={phoneInputRef}
+                              onSubmitEditing={Keyboard.dismiss}
+                              blurOnSubmit={false}
+                             
+                              underlineColorAndroid="#f000"
+                              returnKeyType="next"
+                              maxLength={10}
                         />
                 </View>
                 <View style={{flex:1.5}}>
@@ -98,8 +231,8 @@ const Registration = ({ navigation }) => {
         style={{ height: 58, width: '100%',color:'#ffffff',}}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Country" value="java" />
+        {/* <Picker.Item label="JavaScript" value="js" /> */}
       </Picker>
       </View>
                         </View>
@@ -125,7 +258,7 @@ onPress={() => {
 
 
             <View style={styles.loginbtn}>
-              <TouchableOpacity style={styles.logintouch}>
+              <TouchableOpacity style={styles.logintouch} onPress={handleSubmitPress}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    
@@ -136,7 +269,7 @@ onPress={() => {
               
                         <View style={styles.loginbelow}>
                             <View style={styles.forgotbtn}>
-                            <TouchableOpacity style={styles.forgottouch} onPress={() => navigation.navigate('Login')}>
+                            <TouchableOpacity style={styles.forgottouch}  onPress={() => navigation.navigate('Login')}>
            
             
             <Text style={styles.forgottext}>

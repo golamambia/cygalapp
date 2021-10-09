@@ -1,6 +1,11 @@
 import { Dimensions } from "react-native";
 const { height, width } = Dimensions.get("screen");
 
+export const Hosturl = {
+api:'https://webtechnomind.in/project/cygal/vendor/api/'
+
+}
+
 export const COLORS = {
     primary: "",
     secondary: "",
@@ -67,6 +72,6 @@ export const FONTS = {
     body5: { fontSize: SIZES.body5 }
 }
 
-const appTheme = {COLORS, SIZES, FONTS};
+const appTheme = {COLORS, SIZES, FONTS,Hosturl};
 
 export default appTheme;

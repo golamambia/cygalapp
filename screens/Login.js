@@ -1,15 +1,76 @@
-import React, { useState }  from 'react';
+import React, { useState ,createRef}  from 'react';
 import { View, Text, StatusBar, StyleSheet, ImageBackground, TextInput, Image, TouchableHighlight 
-    ,TouchableOpacity,KeyboardAvoidingView,ScrollView} from 'react-native';
-import { COLORS, SIZES, FONTS } from '../constants/theme'
+    ,TouchableOpacity,KeyboardAvoidingView,ScrollView,Keyboard} from 'react-native';
+import { COLORS, SIZES, FONTS,Hosturl } from '../constants/theme'
 // import Squery from '../component/icons/square'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BottonCommon from '../component/BottonCommon';
 import { Checkbox } from 'react-native-paper';
+import Loader from '../component/Loader';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Login = ({ navigation }) => {
     const [checked, setChecked] = React.useState(false);
     const [isSelected, setSelection] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errortext, setErrortext] = useState('');
+  const passwordInputRef = createRef();
+  const handleSubmitPress = () => {
+    setErrortext('');
+    if (!userEmail) {
+      alert('Please enter email');
+      return;
+    }
+    if (!userPassword) {
+      alert('Please enter password');
+      return;
+    }
+    setLoading(true);
+    let dataToSend = {email: userEmail, password: userPassword};
+    let formBody = [];
+    for (let key in dataToSend) {
+      let encodedKey = encodeURIComponent(key);
+      let encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+
+   fetch(Hosturl.api+'login', {
+      method: 'POST',
+      body: JSON.stringify({
+       email: userEmail,
+       password: userPassword,
+      }),
+      headers: {
+        //Header Defination
+       
+        'Content-Type':'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Hide Loader
+        setLoading(false);
+        console.log(responseJson.response_data.id);
+        // If server response message same as Data Matched
+        if (responseJson.status) {
+          AsyncStorage.setItem('user_id', responseJson.response_data.id);
+          //console.log(responseJson);
+          navigation.navigate('Home');
+        } else {
+          setErrortext(responseJson.msg);
+          //console.log('Please check your email id or password');
+          alert('Please check your email id or password');
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
+  };
     return (
         <View style={styles.container}>
             <StatusBar
@@ -18,6 +79,7 @@ const Login = ({ navigation }) => {
             />
           
             <ImageBackground source={require('../assets/images/startbg.jpg')} style={styles.image}>
+            <Loader loading={loading} />
             <ScrollView style={{ marginTop:110}} contentContainerStyle={{
          
           justifyContent: 'center',
@@ -51,6 +113,19 @@ const Login = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Username"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserEmail) =>
+                                setUserEmail(UserEmail)
+                              }
+                             
+                              autoCapitalize="none"
+                              keyboardType="email-address"
+                              returnKeyType="next"
+                              onSubmitEditing={() =>
+                                passwordInputRef.current &&
+                                passwordInputRef.current.focus()
+                              }
+                              underlineColorAndroid="#f000"
+                              blurOnSubmit={false}
                         />
                         </View>
                         <View style={{position:'relative'}}>
@@ -63,6 +138,17 @@ const Login = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Password"
                             placeholderTextColor="#ffffff" 
+                            onChangeText={(UserPassword) =>
+                                setUserPassword(UserPassword)
+                              }
+                             
+                              keyboardType="default"
+                              ref={passwordInputRef}
+                              onSubmitEditing={Keyboard.dismiss}
+                              blurOnSubmit={false}
+                              secureTextEntry={true}
+                              underlineColorAndroid="#f000"
+                              returnKeyType="next"
                         />
                         
                         </View>
@@ -82,7 +168,7 @@ onPress={() => {
 
 
             <View style={styles.loginbtn}>
-              <TouchableOpacity style={styles.logintouch}  onPress={() => navigation.navigate('Home')}>
+              <TouchableOpacity style={styles.logintouch}  onPress={handleSubmitPress}>
            
             <Image style={{alignSelf:'center'}} source={require("../assets/images/logbtn.png")} />
         </TouchableOpacity>    

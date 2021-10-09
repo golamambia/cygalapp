@@ -64,15 +64,23 @@ const fourthScreenStack = ({navigation}) => {
       </Stack.Navigator>
     );
   };
-const Index = () => {
+const Index = (navigation) => {
   const[get_strtpage, setget_strtpage]=useState('');
+  const[get_sessionuser, setget_sessionuser]=useState('');
   useEffect(async () => {
     //setLoading(true);
     let get_strtpage = await AsyncStorage.getItem('get_strtpage');
     setget_strtpage(get_strtpage);
-  //console.log(get_strtpage);
+    let user_id =  AsyncStorage.getItem('user_id');
+    setget_sessionuser(user_id);
+  console.log(user_id);
 
 }, []);
+const logout = () => {
+  AsyncStorage.setItem('user_id', '');
+  setget_sessionuser('');
+  //navigation.navigate('Home');
+};
     return (
         
         <NavigationContainer>
@@ -134,10 +142,11 @@ const Index = () => {
         <DrawerItemList {...filteredProps} />
        
         </View>
-        {/* <DrawerItem label={() => <Text style={{ color: 'white' }}>Logout</Text>}
+        <DrawerItem label={() => <Text style={{ color: 'white' }}>Logout</Text>}
         style={{backgroundColor: 'red',borderTopRightRadius:50,borderBottomEndRadius:50,width:'75%'}} 
-        onPress={() => alert('Logged out')}
-      /> */}
+        // onPress={() => alert('Logged out')}
+        onPress={logout}
+      />
       </DrawerContentScrollView>
       </ImageBackground>
     );
@@ -210,6 +219,8 @@ const Index = () => {
                         
                     </View>
                     })} />
+                     {!get_sessionuser ? (
+  <>
         <Drawer.Screen options={({ navigation, route }) => ({
             drawerIcon: ({tintColor}) =>
             (
@@ -236,6 +247,9 @@ const Index = () => {
                         headerTransparent: true,
                         headerTintColor: COLORS.white,
                     })} />
+                    </> ) :(<>
+
+                      </>)}
                      <Drawer.Screen options={({ navigation, route }) => ({
                          
                           drawerIcon: ({tintColor}) =>
